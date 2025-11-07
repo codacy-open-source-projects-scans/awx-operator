@@ -50,6 +50,12 @@ spec:
         path: ingress_annotations
         x-descriptors:
         - urn:alm:descriptor:com.tectonic.ui:text
+      - displayName: Route Annotations
+        path: route_annotations
+        x-descriptors:
+          - 'urn:alm:descriptor:com.tectonic.ui:advanced'
+          - 'urn:alm:descriptor:com.tectonic.ui:text'
+          - 'urn:alm:descriptor:com.tectonic.ui:fieldDependency:ingress_type:Route'
       - displayName: Ingress Class Name
         path: ingress_class_name
         x-descriptors:
@@ -584,6 +590,11 @@ spec:
         - urn:alm:descriptor:com.tectonic.ui:advanced
         - urn:alm:descriptor:com.tectonic.ui:number
         - urn:alm:descriptor:com.tectonic.ui:hidden
+      - displayName: Set the maximum allowed size of the client request body in megabytes for nginx
+        path: nginx_client_max_body_size
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:advanced
+        - urn:alm:descriptor:com.tectonic.ui:number
       - displayName: Task Replicas
         path: task_replicas
         x-descriptors:
@@ -686,8 +697,13 @@ spec:
         x-descriptors:
         - urn:alm:descriptor:io.kubernetes:StorageClass
         - urn:alm:descriptor:com.tectonic.ui:advanced
-      - displayName: Postgres Extra Arguments
+      - displayName: Postgres Extra Arguments (Deprecated)
         path: postgres_extra_args
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:advanced
+        - urn:alm:descriptor:com.tectonic.ui:hidden
+      - displayName: Postgres Extra Settings
+        path: postgres_extra_settings
         x-descriptors:
         - urn:alm:descriptor:com.tectonic.ui:advanced
         - urn:alm:descriptor:com.tectonic.ui:hidden
@@ -1155,6 +1171,13 @@ spec:
         - urn:alm:descriptor:com.tectonic.ui:advanced
         - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
         - urn:alm:descriptor:com.tectonic.ui:fieldDependency:metrics_utility_enabled:true
+      - description: Scale down deployments to put AWX into an idle state
+        displayName: Idle AWX
+        path: idle_deployment
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:advanced
+        - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
+        - urn:alm:descriptor:com.tectonic.ui:hidden
       statusDescriptors:
       - description: Route to access the instance deployed
         displayName: URL
